@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%-include('../partials/header'); %>
+</head>
+<body>
+    <div class="container">
+        <%- include ('../partials/navbar'); %>
+        <h3>Contatos cadastrados</h3><br>
+        <a href="/contatos/novo" class="btn btn-primary">Novo contato</a><br><br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Nascimento</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% contatos.forEach(function(contato){ %>
+                <tr>
+                    <td><%=contato.id%></td>
+                    <td><%=contato.nome%></td>
+                    <td><%=contato.email%></td>
+                    <td><%=(contato.nascimento.toString().slice(9,11).length==1?'0'+contato.nascimento.toString().slice(9,11):contato.nascimento.toString().slice(9,11))+'/'+contato.nascimento.toString().slice(5,7)+'/'+contato.nascimento.toString().slice(0,4)%></td>
+                    <td><%=contato.categoria.descricao%></td>
+                    <td><a href="/contatos/editar/<%=contato.id%>" class="fas fa-edit" style="color: black"
+                            ata-toggle="tooltip" title="Editar contato."></a></td>
+                    <td><a href="/contatos/excluir/<%=contato.id%>" class="fas fa-trash" style="color: black"
+                            ata-toggle="tooltip" title="Excluir contato."
+                            onclick="return confirm('Confirma a exclusão?')"></a></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <%-include('../partials/footer'); %>
+</body>
+</html>
+

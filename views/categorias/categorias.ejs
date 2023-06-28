@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%-include('../partials/header'); %>
+</head>
+<body>
+    <div class="container">
+        <%- include ('../partials/navbar'); %>
+        <h3>Categorias cadastradas</h3><br>
+        <a href="/categorias/novo" class="btn btn-primary">Nova categoria</a><br><br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% categorias.forEach(function(categoria){ %>
+                <tr>
+                    <td><%=categoria.id%></td>
+                    <td><%=categoria.descricao%></td>
+                    <td><a href="/categorias/editar/<%=categoria.id%>" class="fas fa-edit" style="color: black"
+                            ata-toggle="tooltip" title="Editar categoria."></a></td>
+                    <td><a href="/categorias/excluir/<%=categoria.id%>" class="fas fa-trash" style="color: black"
+                            ata-toggle="tooltip" title="Excluir categoria."
+                            onclick="return confirm('Confirma a exclusão?')"></a></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table> 
+        <% if(mensagem){ %>
+            <div class="alert alert-danger">
+                <strong>Exclusão de registro!</strong> <%= mensagem %>
+            </div>
+            <% } %>
+    </div>
+    <%-include('../partials/footer'); %>
+</body>
+</html>
+
+

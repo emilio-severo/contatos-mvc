@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%-include('../partials/header'); %>
+</head>
+<body>
+    <div class="container">
+        <%- include ('../partials/navbar'); %>
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Edição de uma categorias</h3><br>
+                <form action="/categorias/atualizar" method="POST">
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <input class="form-control" id="descricao" type="text" name="descricao"
+                            placeholder="Informe o nome da categoria." 
+                            value="<%=categoria.descricao%>" required>
+                    </div>
+                    <input type="hidden" name="id" value="<%=categoria.id%>">
+                    <input class="btn btn-primary" type="submit" value="Atualizar">
+                    <a href="/categorias/lista" class="btn btn-warning">Lista de categorias</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%-include('../partials/footer'); %>    
+</body>
+</html>
+
